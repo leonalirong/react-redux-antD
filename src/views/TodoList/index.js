@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
 import { TodoListWarp,TodoInputWarp } from'./style.js'
 import { Input,Button, List } from 'antd';
-import { getInitTodoListAction} from './store/actionCreates'
+import { fetchInitTodoListAction } from './store/actionCreates'
 import store from '@/store'
+
+// redux-thunk 的实现原理
+// let next =store.dispatch;
+// store.dispatch= action =>{
+//   if(typeof action==='function'){
+//     action()
+//   }else{
+//     next(action);
+//   }
+// }
 
 export default class todoList extends Component {
   constructor(props){
@@ -39,10 +49,11 @@ export default class todoList extends Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3001/todoList')
-    .then(response=>response.json())
-    .then(res=>{
-      store.dispatch(getInitTodoListAction( res))
-    })
+    // fetch('http://localhost:3001/todoList')
+    // .then(response=>response.json())
+    // .then(res=>{
+    //   store.dispatch(getInitTodoListAction( res))
+    // })
+    store.dispatch(fetchInitTodoListAction())
   }
 }
