@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 // import thunk from 'redux-thunk';
 
 // 1. 引入 createSagaMiddleware
@@ -19,7 +19,7 @@ export default createStore(
     todo:todoReducer
   }),
   composeEnhancers(// 让代码运行的时候redux的观察器显示
-     applyMiddleware(sagaMiddleware)
+     applyMiddleware(sagaMiddleware,logger)
   )
   // window.__REDUX_DEVTOOLS_EXTENSION__ && 
   // window.__REDUX_DEVTOOLS_EXTENSION__()
